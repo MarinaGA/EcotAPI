@@ -2,20 +2,20 @@
 % Please edit documentation in R/ecot.token.R
 \name{ecot.token}
 \alias{ecot.token}
-\title{ecot.token}
+\title{Obtain an open session token}
 \usage{
 ecot.token(user, psw)
 }
 \arguments{
-\item{user}{a string corresponding to your user name account in Ecotopia}
+\item{user}{a character string giving to your user name account in Ecotopia.}
 
-\item{psw}{a string corresponding to the password of your account in Ecotopia}
+\item{psw}{a character string giving the password of your account in Ecotopia.}
 }
 \value{
-It returns a string corresponding to your token for a limited session of API communication
+a character string indicating your token for a limited session of API communication.
 }
 \description{
-ESTO ES DESCRIP
+ecot.token returns an open session token codifiying the your password and making a "post" call to the API. The token has an expiration date but a new one can be requested as many times as needed.
 }
 \examples{
 ecot.token("abc","passwd") # where your user names is "abc" and your password is "passwd"
