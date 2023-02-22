@@ -1,11 +1,11 @@
-#' ecot.token
+#' Obtain an open session token
 #'
-#' @param user a string corresponding to your user name account in Ecotopia
-#' @param psw a string corresponding to the password of your account in Ecotopia
+#' @description ecot.token returns an open session token codifiying the your password and making a "post" call to the API. The token has an expiration date but a new one can be requested as many times as needed.
+#' @param user a character string giving to your user name account in Ecotopia.
+#' @param psw a character string giving the password of your account in Ecotopia.
 #'
-#' @return It returns a string corresponding to your token for a limited session of API communication
+#' @return a character string indicating your token for a limited session of API communication.
 #' @export
-#' @description ESTO ES DESCRIP
 #'
 #' @examples ecot.token("abc","passwd") # where your user names is "abc" and your password is "passwd"
 
