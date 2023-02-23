@@ -15,7 +15,7 @@
 #'
 #' @examples ecot.downloads(ecot.token("abc","passw"), "6267d0fae75c8ef26173d757", type = "Env")
 #'
-ecot.downloads <- function(token, indv_id, ndevicelimit = 1e3, type = "GPS", maxrounds, datestart_updates, show_count = F){
+ecot.downloads <- function(token, indv_id, ndevicelimit = 1e3, type = "GPS", maxrounds = NA, datestart_updates, show_count = F){
 
   if(!missing(datestart_updates))
     datestart_updates <- gsub(" ","T",paste0(datestart_updates,"Z"))
@@ -28,9 +28,10 @@ ecot.downloads <- function(token, indv_id, ndevicelimit = 1e3, type = "GPS", max
 
   while(length(Tloop)==ndevicelimit & stop == "NO"){
 
-    if(!missing(maxrounds))
+    if(!is.na(maxrounds))
       if(listlength==maxrounds)
         stop <- "SI"
+
     if(show_count)
       cat(as.character(gsub("Z","",gsub("T"," ",Tloop[[length(Tloop)]]$timestamp))),"\n")
     to_start <- Tloop[[length(Tloop)]]$timestamp
