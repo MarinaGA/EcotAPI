@@ -1,11 +1,14 @@
 Package: EcotAPI
 Title: This package attends to make Ecotopia API easier to handle from R.
+Date: 2023-02-22
 Version: 0.0.1
 Authors@R: 
-    person(GarcÃ­a-Alfonso Marina, Reyes-GonzÃ¡lez JosÃ© Manuel, "margaralf@gmail.com","josemanuel.delosreyes@gmail.com", role = c("aut", "cre"),
-           comment = c(ORCID = "https://orcid.org/0000-0003-4953-7207", "https://orcid.org/0000-0001-8311-3235"))
+    person("García-Alfonso Marina",email = "margaralf@gmail.com",role = "aut"),
+    person("Reyes-González José Manuel", email = "josemanuel.delosreyes@gmail.com", role = c("aut"),
+           comment = c(ORCID = c("https://orcid.org/0000-0003-4953-7207", "https://orcid.org/0000-0001-8311-3235")))
 Description: The package contains some functions to make downloading data from Ecotopia more user friendly than a direct use of the API. There is functions to generate the session token needed, to download individual Linformation and available data such as GPS data, environmental data, ODBA data or acc raw data.
 License: `use_gpl_license()`
+Depends: R (>= 4.1.2)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
