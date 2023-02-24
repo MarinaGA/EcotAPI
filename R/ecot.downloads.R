@@ -26,7 +26,7 @@ ecot.downloads <- function(token, indv_id, ndevicelimit = 1e3, type = "GPS", max
   listlength <- 1
   stop <- "NO"
 
-  while(length(Tloop)==ndevicelimit & stop == "NO"){
+  while(length(Tloop)==ndevicelimit & stop == "NO" & maxrounds != 1){
 
     if(!is.na(maxrounds))
       if(listlength==maxrounds)

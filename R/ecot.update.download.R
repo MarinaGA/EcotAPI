@@ -4,7 +4,7 @@
 #' @param psw a character string giving the password of your account in Ecotopia. Only neccesary if token is not provided.
 #' @param token a character string giving your token for an open session.  Only neccesary if user and psw is not provided. For obtaining it, see ecot.token.
 #' @param type a character string indicating the kind of data to download. It can be "GPS", "Env", "ODBA" or "Acc"
-#' @param maxrounds the maximun number of requests to the API. It means that the maximun number of rows donwloaded would be this value multiplied by 1000 (maximun available to be downloaded on one request)s.
+#' @param maxrounds the maximun number of requests to the API. It means that the maximun number of data donwloaded by individual would be this value multiplied by 1000 (maximun available to be downloaded on one request).
 #' @param devID a character vector giving the device id to update. Only those active will be updated. the identifier to use is the one from the table of devices information obtained with a call to the API. For obtaining it, see ecot.indvs. The 3 different identifiers (uuid, device number, and device id) that appears on the Ecotopia webpage are not useful for this.
 #' @param max_dates a character vector giving the date of the last data alrady download of each device on the format "Y%-%m-%d %H:%M:$S". If this is not provided the downloads will start at first date according to "Deployment date" on Ecotopia webpage. This argument admits tenths of a second which is normally the case for acc data.
 #' @param show_count a logical (TRUE or FALSE) indicating if an indicator of the current data that it is downloading should appears. The indicator is just a string with the last date of each 1e3 rows.
