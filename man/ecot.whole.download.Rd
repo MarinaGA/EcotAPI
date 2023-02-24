@@ -23,7 +23,7 @@ ecot.whole.download(
 
 \item{type}{a character string indicating the kind of data to download. It can be "GPS", "Env", "ODBA" or "Acc"}
 
-\item{maxrounds}{the maximun number of requests to the API. It means that the maximun number of rows donwloaded would be this value multiplied by 1000 (maximun available to be downloaded on one request)s.}
+\item{maxrounds}{the maximun number of requests to the API. It means that the maximun number of data donwloaded by individual would be this value multiplied by 1000 (maximun available to be downloaded on one request).}
 
 \item{show_count}{a logical (TRUE or FALSE) indicating if an indicator of the current data that it is downloading should appears. The indicator is just a string with the last date of each 1e3 rows.}
 

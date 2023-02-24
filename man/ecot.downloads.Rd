@@ -6,18 +6,18 @@
 \usage{
 ecot.downloads(
   token,
-  indv_id,
+  device_id,
   ndevicelimit = 1000,
   type = "GPS",
-  maxrounds,
-  datestart_updates,
+  maxrounds = NA,
+  datestart_updates = NA,
   show_count = F
 )
 }
 \arguments{
 \item{token}{a character string giving your token for an open session. For obtaining it, see ecot.token.}
 
-\item{indv_id}{a character string of the device id from the table of devices information obtained with the API. For obtaining it, see ecot.indvs. The 3 different identifiers (uuid, device number, and device id) that appears on the Ecotopia web are not useful for this.}
+\item{device_id}{a character string of the device id from the table of devices information obtained with the API. For obtaining it, see ecot.indvs. The 3 different identifiers (uuid, device number, and device id) that appears on the Ecotopia web are not useful for this.}
 
 \item{ndevicelimit}{the maximun number of data to download on each request to the API. The maximun available is 1000, which is the default value.}
 
@@ -33,7 +33,7 @@ ecot.downloads(
 a list of data frame. Each element of the list is the downloadED information for each individual.
 }
 \description{
-ecot.downloads makes a serie of request to Ecotopia API based on the choosen type of data, individual and date (optional) for a defined number (optional) of resulting data.
+ecot.downloads makes a serie of request to Ecotopia API based on the choosen type of data, device id and date (optional) for a defined number (optional) of resulting data.
 }
 \examples{
 ecot.downloads(ecot.token("abc","passw"), "6267d0fae75c8ef26173d757", type = "Env")
