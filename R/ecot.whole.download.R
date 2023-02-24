@@ -45,7 +45,7 @@ ecot.whole.download <-  function(user, psw, token, type = "GPS", maxrounds = NA,
         error_count <- error_count + 1
 
         cat("\nIndv",indv_loop,"\n\n") ## this shows the indv that is being downloaded
-        Tloop <- ecot.downloads(token = token,indv_id = Indvs_act$id[indv_loop], type = type, maxrounds = maxrounds, show_count = show_count)
+        Tloop <- ecot.downloads(token = token,device_id = Indvs_act$id[indv_loop], type = type, maxrounds = maxrounds, show_count = show_count)
         tobind <- ecot.JSON_to_df(Tloop) ## this function is not inside the previous one because testing is easier this way
 
         if(type != "Acc")
