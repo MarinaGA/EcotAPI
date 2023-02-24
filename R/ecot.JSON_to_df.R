@@ -17,7 +17,12 @@ ecot.JSON_to_df <- function(y){
   split_f <- function(z) {
 
     allnames <- lapply(z, names) ## it has to be comapring names becasue no all the elements with the same length have the same names
-    num_diff <- which(sapply(allnames,function(x)sum(allnames[[1]]==x))!=length(allnames[[1]]))
+    num_diff <- which(
+      sapply(allnames,
+             function(x){
+               if(length(x)!=length(allnames[[1]]))
+                 return(0) else
+                   return(sum(allnames[[1]]==x))}) !=length(allnames[[1]]))
 
     if(length(num_diff) > 0){
       z_later <- z[num_diff]
