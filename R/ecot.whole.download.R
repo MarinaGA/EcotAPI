@@ -44,6 +44,7 @@ ecot.whole.download <-  function(user, psw, token, type = "GPS", maxrounds = NA,
 
         error_count <- error_count + 1
 
+        cat("\nIndv",indv_loop,"\n\n") ## this shows the indv that is being downloaded
         Tloop <- ecot.downloads(token = token,indv_id = Indvs_act$id[indv_loop], type = type, maxrounds = maxrounds, show_count = show_count)
         tobind <- ecot.JSON_to_df(Tloop) ## this function is not inside the previous one because testing is easier this way
 
@@ -51,7 +52,6 @@ ecot.whole.download <-  function(user, psw, token, type = "GPS", maxrounds = NA,
           Tres[[indv_loop]] <- tobind else
             Tres <- list(sample_info = rbind(Tres$sample_info,tobind$sample_info),acc = c(Tres$acc,tobind$acc))
 
-        cat("\nIndv",indv_loop,"\n\n") ## this shows the indv that is being downloaded
         indv_loop <- indv_loop+1
 
       },error=function(e) {message('The error "extern is not substetableXXX", it is solved despite it appears sometimes');print(e)
