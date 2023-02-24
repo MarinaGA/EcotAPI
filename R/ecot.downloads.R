@@ -26,11 +26,13 @@ ecot.downloads <- function(token, indv_id, ndevicelimit = 1e3, type = "GPS", max
   listlength <- 1
   stop <- "NO"
 
-  while(length(Tloop)==ndevicelimit & stop == "NO" & maxrounds != 1){
+  while(length(Tloop)==ndevicelimit & stop == "NO"){
 
     if(!is.na(maxrounds))
-      if(listlength==maxrounds)
+      if(listlength==maxrounds){
         stop <- "SI"
+        next
+      }
 
     if(show_count)
       cat(as.character(gsub("Z","",gsub("T"," ",Tloop[[length(Tloop)]]$timestamp))),"\n")
