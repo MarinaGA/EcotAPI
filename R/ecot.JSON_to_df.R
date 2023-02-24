@@ -15,12 +15,13 @@
 ecot.JSON_to_df <- function(y){
 
   split_f <- function(z) {
-    listlength <- sapply(z, length)
-    num_diflen <- which(listlength < max(listlength))
 
-    if(length(num_diflen) > 0){
-      z_later <- z[num_diflen]
-      z <- z[-num_diflen]
+    allnames <- lapply(z, names) ## it has to be comapring names becasue no all the elements with the same length have the same names
+    num_diff <- which(sapply(allnames,function(x)sum(allnames[[1]]==x))!=length(allnames[[1]]))
+
+    if(length(num_diff) > 0){
+      z_later <- z[num_diff]
+      z <- z[-num_diff]
       return(list(done = z, to.do = z_later))
     }
     return(list(done = z, to.do = NULL))
@@ -68,7 +69,10 @@ ecot.JSON_to_df <- function(y){
         if (names(x1[z]) == "satellite") {
 
           valores <- lapply(x,`[[`,z)
-          valores <- lapply(valores, function(x) do.call(c,x))
+          num <- sapply(valores,class)
+          strange_values <- valores[num!="list"]
+          normal_values <- valores[num=="list"]
+          valores <- lapply(normal_values, function(x) do.call(c,x))
           valores <- lapply(valores, function(x) do.call(c,x))
           nm <- names(valores[[1]])
           dt <- as.data.frame(do.call(rbind,lapply(valores, as.numeric)))
