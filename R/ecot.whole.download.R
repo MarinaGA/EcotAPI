@@ -54,7 +54,7 @@ ecot.whole.download <-  function(user, psw, token, type = "GPS", maxrounds = NA,
 
         indv_loop <- indv_loop+1
 
-      },error=function(e) {message('The error "extern is not substetableXXX", it is solved despite it appears sometimes');print(e)
+      },error=function(e) {message('The error "<simpleError: object of type 'externalptr' is not subsettable>", it is solved despite it appears sometimes');print(e)
       },warning=function(w) {message('A Warning Occurred');print(w)
       })
     }
