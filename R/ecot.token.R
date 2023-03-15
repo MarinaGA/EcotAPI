@@ -19,7 +19,7 @@ ecot.token <- function(user,psw){
   ## codify the real password
   pswsha256 <- digest::digest(paste0(user," + druid + ",psw," + heifeng"), algo=c('sha256'), serialize = F)
   ## send the request to the API
-  token <- httr::POST("https://ecotopiago.com/api/v2/login", body = paste0('{"username":"',user,'","password":"',pswsha256,'"}'))
+  token <- httr::POST("https://www.ecotopiago.com/api/v2/login", body = paste0('{"username":"',user,'","password":"',pswsha256,'"}'))
   ## extract the token
   token_s <- token$headers$`x-druid-authentication`
   return(token_s)

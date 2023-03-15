@@ -31,8 +31,8 @@ ecot.API.request <- function(token, device_id, ndevicelimit = 1e3, datestart_upd
 
 
   if(is.na(datestart_updates))
-    url <- paste0("https://ecotopiago.com/api/v2/",tourl,"/device/",device_id,"/page") else
-      url <- paste0("https://ecotopiago.com/api/v2/",tourl,"/device/",device_id,"/page/",datestart_updates)
+    url <- paste0("https://www.ecotopiago.com/api/v2/",tourl,"/device/",device_id,"/page") else
+      url <- paste0("https://www.ecotopiago.com/api/v2/",tourl,"/device/",device_id,"/page/",datestart_updates)
 
 
   headers <-

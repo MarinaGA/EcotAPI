@@ -17,7 +17,7 @@ ecot.indvs <- function(token, ndevicelimit = 1e3){
 
   headers <-
     add_headers("x-druid-authentication" = token, "x-result-limit" = ndevicelimit)
-  url <- "https://ecotopiago.com/api/v3/device/page/"
+  url <- "https://www.ecotopiago.com/api/v3/device/page/"
   input <- GET(url, config = headers)
   input <- content(input, as = "parsed")
 
