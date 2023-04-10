@@ -1,10 +1,10 @@
-#' Download the whole data base
+#' Download all available data for the choosen devices
 #'
 #' @param user a character string giving to your user name account in Ecotopia. Only neccesary if token is not provided.
 #' @param psw a character string giving the password of your account in Ecotopia. Only neccesary if token is not provided.
 #' @param token a character string giving your token for an open session.  Only neccesary if user and psw is not provided. For obtaining it, see ecot.token.
 #' @param type a character string indicating the kind of data to download. It can be "GPS", "Env", "ODBA" or "Acc"
-#' @param devices a vector containing the devices number showed on Ecotopia webpage or the UUID to be downloaded.
+#' @param devices a vector containing the devices number showed on Ecotopia webpage or the UUID to be downloaded. Devices should have the "Active" status.
 #' @param maxrounds the maximun number of requests to the API. It means that the maximun number of data donwloaded by individual would be this value multiplied by 1000 (maximun available to be downloaded on one request).
 #' @param show_count a logical (TRUE or FALSE) indicating if an indicator of the current data that it is downloading should appears. The indicator is just a string with the last date of each 1e3 rows.
 #' @param max_devs the maximun number of active devices to download. Optional.
@@ -12,7 +12,7 @@
 #' @return a data frame containing all the available information that the Ecotopia API provide for each type of data. Only information from active devices can be downloaded. In the case of accelerometer data, the function returns a list of 2 elements, the first one containing the information for each acc measurement and the second containing al the acc samples corresponding to each measurement.
 #' @export
 #'
-#' @examples T_Env <- ecot.whole.download("abc","passw", type = "Env")
+#' @examples T_Env <- ecot.whole.devices("abc","passw", type = "Env", devices = c(11125,11126,11135))
 #'
 ecot.whole.devices <-  function(user, psw, token, type = "GPS", devices, maxrounds = NA, show_count = F, max_devs){
 
