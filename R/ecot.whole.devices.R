@@ -50,7 +50,7 @@ ecot.whole.devices <-  function(user, psw, token, type = "GPS", devices, maxroun
     while(indv_loop <= max_devs){
 
       if(error_count > nrow(Indvs_act)*2){ # the error that motivate the use of tryCatch normally appears once by each whole download.
-        print(paste("The indv",indv_loop, "produced an error and it was not donwloaded")
+        print(paste("The indv",indv_loop, "produced an error and it was not donwloaded"))
         indv_loop <- indv_loop + 1
       }
 
