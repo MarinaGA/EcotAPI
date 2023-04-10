@@ -2,7 +2,7 @@
 % Please edit documentation in R/ecot.whole.devices.R
 \name{ecot.whole.devices}
 \alias{ecot.whole.devices}
-\title{Download the whole data base}
+\title{Download all available data for the choosen devices}
 \usage{
 ecot.whole.devices(
   user,
@@ -24,7 +24,7 @@ ecot.whole.devices(
 
 \item{type}{a character string indicating the kind of data to download. It can be "GPS", "Env", "ODBA" or "Acc"}
 
-\item{devices}{a vector containing the devices number showed on Ecotopia webpage or the UUID to be downloaded.}
+\item{devices}{a vector containing the devices number showed on Ecotopia webpage or the UUID to be downloaded. Devices should have the "Active" status.}
 
 \item{maxrounds}{the maximun number of requests to the API. It means that the maximun number of data donwloaded by individual would be this value multiplied by 1000 (maximun available to be downloaded on one request).}
 
@@ -36,9 +36,9 @@ ecot.whole.devices(
 a data frame containing all the available information that the Ecotopia API provide for each type of data. Only information from active devices can be downloaded. In the case of accelerometer data, the function returns a list of 2 elements, the first one containing the information for each acc measurement and the second containing al the acc samples corresponding to each measurement.
 }
 \description{
-Download the whole data base
+Download all available data for the choosen devices
 }
 \examples{
-T_Env <- ecot.whole.download("abc","passw", type = "Env")
+T_Env <- ecot.whole.devices("abc","passw", type = "Env", devices = c(11125,11126,11135))
 
 }
