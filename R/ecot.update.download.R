@@ -45,7 +45,7 @@ ecot.update.download <-   function(user, psw, token, type = "GPS", devID, max_da
 
     for(i in 1:length(devID_act)){
       cat("\nIndv",i,"\n\n")
-      Tloop <- ecot.downloads(token = token, device_id = devID_act[i], type = type, maxrounds = maxrounds, datestart_updates = max_dates[i])
+      Tloop <- ecot.downloads(token = token, device_id = devID_act[i], type = type, maxrounds = maxrounds, datestart_updates = max_dates[i], show_count = show_count)
       if(!is.null(Tloop)){
         tobind <- ecot.JSON_to_df(Tloop) ## this function is not inside the previous one because testing is easier this way
         if(type != "Acc")
