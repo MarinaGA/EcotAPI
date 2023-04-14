@@ -41,43 +41,48 @@ ecot.JSON_to_df <- function(y){
 
     for(z in 1:length(x1)){
 
-      if (inherits(x1[z], "list")) {
+      sampletype_f <- function(x){
 
-        if (names(x1[z]) == "sample_type") {
+        valores <- lapply(x,`[[`,z)
+        valores_temp <- tryCatch({lapply(valores, function(x) do.call(c,x))}, error = function(e) {return("ODBA exception")})
 
-          valores <- lapply(x,`[[`,z)
-          valores_temp <- tryCatch({lapply(valores, function(x) do.call(c,x))}, error = function(e) {return("ODBA exception")})
-
-          ## new due to another change in database. Only ODBA
-          if(valores_temp == "ODBA exception"){
+        ## new due to another change in database. Only ODBA
+        if(valores_temp == "ODBA exception"){
           num <- sapply(valores,function(x)!is.null(x))
           vector <- rep(NA,length(valores))
           vector[num] <- lapply(valores[num], function(x) do.call(c,x))
           valores1 <- sapply(vector,`[[`,1)
-          } else {
-            valores <- valores_temp
-            valores1 <- sapply(valores,`[[`,1)
-          }
-          ##
-
-          dt <- data.frame(sample_type1 = valores1)
-
-          num <- which(sapply(valores, length)==2)
-          valores2 <- sapply(valores[num],`[[`,2)
-          dt$sample_type2 <- NA
-          if(length(valores2)>0)
-            dt$sample_type2[num] <- valores2
-
-          num <- which(sapply(valores, length)==3)
-          valores3 <- sapply(valores[num],`[[`,3)
-          dt$sample_type3 <- NA
-          if(length(valores3)>0)
-            dt$sample_type3[num] <- valores3
-
-          listloop[[z]] <- dt
-
+        } else {
+          valores <- valores_temp
+          valores1 <- sapply(valores,`[[`,1)
         }
+        ##
 
+        dt <- data.frame(sample_type1 = valores1)
+
+        num <- which(sapply(valores, length)==2)
+        valores2 <- sapply(valores[num],`[[`,2)
+        dt$sample_type2 <- NA
+        if(length(valores2)>0)
+          dt$sample_type2[num] <- valores2
+
+        num <- which(sapply(valores, length)==3)
+        valores3 <- sapply(valores[num],`[[`,3)
+        dt$sample_type3 <- NA
+        if(length(valores3)>0)
+          dt$sample_type3[num] <- valores3
+
+        return(dt)
+      }
+
+      if(names(x1[z]) == "sample_type")
+        listloop[[z]] <- sampletype_f(x)
+
+      if (inherits(x1[[z]], "list")) {
+
+        # if (names(x1[z]) == "sample_type") ## ahora fuera porque a veces es list y a veces no
+        #   listloop[[z]] <- sampletype_f(x)
+        #
         # if (names(x1[z]) == "loc") { ## NO ME INTERESA, IGUAL QUE LAS OTRAS COORDS...
         #   dt <- as.data.frame(t(do.call(c, x1$loc$coordinates)))
         #   colnames(dt) <- c("longitude","latitude")}
