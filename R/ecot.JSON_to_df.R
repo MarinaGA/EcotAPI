@@ -46,18 +46,20 @@ ecot.JSON_to_df <- function(y){
         if (names(x1[z]) == "sample_type") {
 
           valores <- lapply(x,`[[`,z)
-          valores <- tryCatch({lapply(valores, function(x) do.call(c,x))}, error = function(e) {return("ODBA exception")})
+          valores_temp <- tryCatch({lapply(valores, function(x) do.call(c,x))}, error = function(e) {return("ODBA exception")})
 
           ## new due to another change in database. Only ODBA
-          if(valores == "ODBA exception"){
+          if(valores_temp == "ODBA exception"){
           num <- sapply(valores,function(x)!is.null(x))
           vector <- rep(NA,length(valores))
           vector[num] <- lapply(valores[num], function(x) do.call(c,x))
           valores1 <- sapply(vector,`[[`,1)
+          } else {
+            valores <- valores_temp
+            valores1 <- sapply(valores,`[[`,1)
           }
           ##
 
-          valores1 <- sapply(valores,`[[`,1)
           dt <- data.frame(sample_type1 = valores1)
 
           num <- which(sapply(valores, length)==2)
