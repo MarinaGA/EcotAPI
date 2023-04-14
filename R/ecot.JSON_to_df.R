@@ -109,7 +109,7 @@ ecot.JSON_to_df <- function(y){
                               return(data.frame(x = sapply(k,`[[`,2), y = sapply(k,`[[`,3), Z = sapply(k,`[[`,4)))})
         }
       } else
-        if(names(x1[z]) != "sample_type")
+        if(names(x1[z]) != "sample_type"){
         valores <- do.call(c,lapply(x,`[[`,z))
         nm <- names(x1)[[z]]
         eval(parse(text = paste0("dt <- data.frame(",nm," = valores)")))
