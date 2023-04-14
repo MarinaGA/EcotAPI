@@ -47,7 +47,7 @@ ecot.JSON_to_df <- function(y){
         valores_temp <- tryCatch({lapply(valores, function(x) do.call(c,x))}, error = function(e) {return("ODBA exception")})
 
         ## new due to another change in database. Only ODBA
-        if(valores_temp == "ODBA exception"){
+        if(valores_temp[1] == "ODBA exception"){
           num <- sapply(valores,function(x)!is.null(x))
           vector <- rep(NA,length(valores))
           vector[num] <- lapply(valores[num], function(x) do.call(c,x))
