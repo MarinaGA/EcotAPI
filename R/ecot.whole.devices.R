@@ -64,7 +64,7 @@ ecot.whole.devices <-  function(user, psw, token, type = "GPS", devices, maxroun
 
         if(type != "Acc")
           Tres[[indv_loop]] <- tobind else
-            Tres <- list(sample_info = rbind(Tres$sample_info,tobind$sample_info),acc = c(Tres$acc,tobind$acc))
+            Tres[[indv_loop]] <- list(sample_info = rbind(Tres$sample_info,tobind$sample_info),acc = c(Tres$acc,tobind$acc))
 
         indv_loop <- indv_loop+1
 
