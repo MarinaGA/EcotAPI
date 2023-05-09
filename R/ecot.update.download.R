@@ -43,9 +43,28 @@ ecot.update.download <-   function(user, psw, token, type = "GPS", devID, max_da
 
     Tres <- list()
 
-    for(i in 1:length(devID_act)){
+    indv_loop <- 1
+    error_count <- 1
+
+
+    while(indv_loop <= length(devID_act)){
+
+      if(error_count > nrow(Indvs_act)*2) # the error that motivate the use of tryCatch normally appears once by each whole download.
+        stop()
+
+      tryCatch({
+
+        error_count <- error_count + 1
+
       cat("\nIndv",i,"\n\n")
       Tloop <- ecot.downloads(token = token, device_id = devID_act[i], type = type, maxrounds = maxrounds, datestart_updates = max_dates[i], show_count = show_count)
+
+      indv_loop <- indv_loop+1
+
+      },error=function(e) {message("The error '<simpleError: object of type 'externalptr' is not subsettable>', it is solved despite it appears sometimes");print(e)
+      },warning=function(w) {message('A Warning Occurred');print(w)
+      })
+
       if(!is.null(Tloop)){
         tobind <- ecot.JSON_to_df(Tloop) ## this function is not inside the previous one because testing is easier this way
         if(type != "Acc")
