@@ -49,6 +49,9 @@ ecot.update.download <-   function(user, psw, token, type = "GPS", devID, max_da
     ## only active devices can be updated
     devID_act <- devID_s[devID_s %in% Indvs_act$id]
 
+    ## equivalences to cat
+    devices_toshow <- merge(data.frame(id=devID_act),Indvs_act)$mark
+
     Tres <- list()
 
     indv_loop <- 1
@@ -64,7 +67,7 @@ ecot.update.download <-   function(user, psw, token, type = "GPS", devID, max_da
 
         error_count <- error_count + 1
 
-        cat("\nIndv",devID_act[indv_loop],"-",type,"\n\n") ## this shows the device that is being downloaded
+        cat("\nIndv",indv_loop,"-",type,"-",devices_toshow[indv_loop],"\n\n") ## this shows the device that is being downloaded
 
       Tloop <- ecot.downloads(token = token, device_id = devID_act[indv_loop], type = type, maxrounds = maxrounds, datestart_updates = max_dates[indv_loop], show_count = show_count)
 
