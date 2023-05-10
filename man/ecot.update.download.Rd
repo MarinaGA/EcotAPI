@@ -24,7 +24,7 @@ ecot.update.download(
 
 \item{type}{a character string indicating the kind of data to download. It can be "GPS", "Env", "ODBA" or "Acc"}
 
-\item{devID}{a character vector giving the device id to update. Only those active will be updated. the identifier to use is the one from the table of devices information obtained with a call to the API. For obtaining it, see ecot.indvs. The 3 different identifiers (uuid, device number, and device id) that appears on the Ecotopia webpage are not useful for this.}
+\item{devID}{a character vector giving the device id to update. Only those active will be updated. The identifier to use could be uuid, device number according to Ecotopia webpage or the one from the table of devices information obtained with a call to the API. For obtaining the last one, see ecot.indvs.}
 
 \item{max_dates}{a character vector giving the date of the last data alrady download of each device on the format "Y\%-\%m-\%d \%H:\%M:$S". If this is not provided the downloads will start at first date according to "Deployment date" on Ecotopia webpage. This argument admits tenths of a second which is normally the case for acc data.}
 
