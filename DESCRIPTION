@@ -1,7 +1,7 @@
 Package: EcotAPI
 Title: This package attends to make Ecotopia API easier to handle from R.
 Date: 2023-02-22
-Version: 1.0.3
+Version: 1.0.2
 Authors@R: 
     c(person("García-Alfonso Marina", email = "margaralf@gmail.com", role = c("aut","cre"), comment = c(ORCID = c("https://orcid.org/0000-0003-4953-7207"))),
     person("Reyes-González José Manuel", email = "josemanuel.delosreyes@gmail.com", role = "aut", comment = c(ORCID = c("https://orcid.org/0000-0001-8311-3235"))))
