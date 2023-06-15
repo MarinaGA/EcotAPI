@@ -25,7 +25,7 @@ ecot.whole.devices <-  function(user, psw, token, type = "GPS", devices, maxroun
     if(missing(devices))
       stop("You need to provide a vector with the devices number showed on Ecotopia webpage or the UUID to be downloaded. Devices should have the 'Active' status.")
 
-    Indv_id <- ecot.indvs(token)
+    Indv_id <- ecot.indvs(token = token)
     ## indvs suspended return the message 403 forbiden
     Indvs_susp <- subset(Indv_id,inventory_status == "suspended")
     ## indvs NOT suspended works
@@ -58,10 +58,10 @@ ecot.whole.devices <-  function(user, psw, token, type = "GPS", devices, maxroun
         error_count <- indv_loop ## return error_count to the corresponding value of the round
       }
 
-      donw_f <- function() ecot.downloads(token = token, device_id = Indvs_act$id[indv_loop],
+      down_f <- function() ecot.downloads(token = token, device_id = Indvs_act$id[indv_loop],
                                           type = type, maxrounds = maxrounds, show_count = show_count)
 
-      download.messages.loop_values(devices_toshow,indv_loop,error_count,Tres)
+      download.messages.loop_values(devices_toshow,indv_loop,error_count,Tres,down_f)
 
     } ## end while
 

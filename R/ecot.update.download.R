@@ -29,7 +29,7 @@ ecot.update.download <-   function(user, psw, token, type = "GPS", devID, max_da
       if(length(devID)!=length(max_dates))
         stop("You need to provide a vector with device id for each individual (devID) and a vector of the SAME length with the last date downloaded for each one (max_dates).")
 
-    Indv_id <- ecot.indvs(token)
+    Indv_id <- ecot.indvs(token = token)
     ## indvs suspended return the message 403 forbiden
     Indvs_susp <- subset(Indv_id,inventory_status == "suspended")
     ## indvs NOT suspended works
@@ -61,11 +61,11 @@ ecot.update.download <-   function(user, psw, token, type = "GPS", devID, max_da
       if(error_count > nrow(Indvs_act)*2) # the error that motivate the use of tryCatch normally appears once by each whole download.
         stop() ## such error will appear normally once, if there is any other error that keeps appearing, this line will crack the download instead of create an infinite loop.
 
-      donw_f <- function() ecot.downloads(token = token, device_id = devID_act[indv_loop],
+      down_f <- function() ecot.downloads(token = token, device_id = devID_act[indv_loop],
                                           type = type, maxrounds = maxrounds, show_count = show_count,
                                           datestart_updates = max_dates[indv_loop])
 
-      download.messages.loop_values(devices_toshow,indv_loop,error_count,Tres)
+      download.messages.loop_values(devices_toshow,indv_loop,error_count,Tres,down_f)
 
     } ## end while
 

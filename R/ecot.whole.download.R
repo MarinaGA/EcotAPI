@@ -21,7 +21,7 @@ ecot.whole.download <-  function(user, psw, token, type = "GPS", maxrounds = NA,
     if(missing(token))
       token <- ecot.token(user,psw)
 
-    Indv_id <- ecot.indvs(token)
+    Indv_id <- ecot.indvs(token = token)
     ## indvs suspended return the message 403 forbiden
     Indvs_susp <- subset(Indv_id,inventory_status == "suspended")
     ## indvs NOT suspended works
@@ -43,10 +43,10 @@ ecot.whole.download <-  function(user, psw, token, type = "GPS", maxrounds = NA,
       if(error_count > nrow(Indvs_act)*2) # the error that motivate the use of tryCatch normally appears once by each whole download.
         stop()
 
-      donw_f <- function() ecot.downloads(token = token, device_id = Indvs_act$id[indv_loop],
+      down_f <- function() ecot.downloads(token = token, device_id = Indvs_act$id[indv_loop],
                                           type = type, maxrounds = maxrounds, show_count = show_count)
 
-      download.messages.loop_values(devices_toshow,indv_loop,error_count,Tres)
+      download.messages.loop_values(devices_toshow,indv_loop,error_count,Tres,down_f)
 
     } ## end while
 
