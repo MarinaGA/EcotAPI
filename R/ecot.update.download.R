@@ -65,7 +65,7 @@ ecot.update.download <-   function(user, psw, token, type = "GPS", devID, max_da
                                           type = type, maxrounds = maxrounds, show_count = show_count,
                                           datestart_updates = max_dates[indv_loop])
 
-      download.messages.loop_values(devices_toshow,indv_loop,error_count,Tres,down_f)
+      download.messages.loop_values(devices_toshow,indv_loop,error_count,Tres,down_f, token, type, maxrounds, show_count)
 
     } ## end while
 

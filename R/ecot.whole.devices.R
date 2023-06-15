@@ -61,7 +61,7 @@ ecot.whole.devices <-  function(user, psw, token, type = "GPS", devices, maxroun
       down_f <- function() ecot.downloads(token = token, device_id = Indvs_act$id[indv_loop],
                                           type = type, maxrounds = maxrounds, show_count = show_count)
 
-      download.messages.loop_values(devices_toshow,indv_loop,error_count,Tres,down_f)
+      download.messages.loop_values(devices_toshow,indv_loop,error_count,Tres,down_f, token, type, maxrounds, show_count)
 
     } ## end while
 

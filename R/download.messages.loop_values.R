@@ -12,7 +12,7 @@
 #'
 #' @examples download.messages.loop_values(devices_toshow,indv_loop,error_count,Tres)
 #'
-download.messages.loop_values <- function(devices_toshow,indv_loop,error_count,Tres, down_f){
+download.messages.loop_values <- function(devices_toshow,indv_loop,error_count,Tres, down_f, token, type, maxrounds, show_count){
 tryCatch({
 
   error_count <- error_count + 1
