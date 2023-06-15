@@ -4,16 +4,36 @@
 \alias{download.messages.loop_values}
 \title{Inside function}
 \usage{
-download.messages.loop_values(devices_toshow, indv_loop, error_count, Tres)
+download.messages.loop_values(
+  devices_toshow,
+  indv_loop,
+  error_count,
+  Tres,
+  down_f,
+  token,
+  type,
+  maxrounds,
+  show_count
+)
 }
 \arguments{
-\item{devices_toshow}{parameter already create inside the mabove mentioned fucntions}
+\item{devices_toshow}{parameter already created inside the above mentioned functions}
 
-\item{indv_loop}{parameter already create inside the mabove mentioned fucntions}
+\item{indv_loop}{parameter already created inside the above mentioned functions}
 
-\item{error_count}{parameter already create inside the mabove mentioned fucntions}
+\item{Tres}{parameter already created inside the above mentioned functions}
 
-\item{Tres}{parameter already create inside the mabove mentioned fucntions}
+\item{down_f}{parameter already created inside the above mentioned functions}
+
+\item{token}{parameter already created inside the above mentioned functions}
+
+\item{type}{parameter already created inside the above mentioned functions}
+
+\item{maxrounds}{parameter already created inside the above mentioned functions}
+
+\item{show_count}{parameter already created inside the above mentioned functions}
+
+\item{error_coun}{parameter already created inside the above mentioned functions}
 }
 \value{
 updated values for indv_loop, error_count, and Tres  for each round of the loop of download.
