@@ -11,7 +11,7 @@ ecot.whole.download(
   type = "GPS",
   maxrounds = NA,
   show_count = F,
-  max_indvs
+  max_devs
 )
 }
 \arguments{
@@ -27,7 +27,7 @@ ecot.whole.download(
 
 \item{show_count}{a logical (TRUE or FALSE) indicating if an indicator of the current data that it is downloading should appears. The indicator is just a string with the last date of each 1e3 rows.}
 
-\item{max_indvs}{the maximun number of active devices to download. Optional.}
+\item{max_devs}{the maximun number of active devices to download. Optional.}
 }
 \value{
 a data frame containing all the available information that the Ecotopia API provide for each type of data. Only information from active devices can be downloaded. In the case of accelerometer data, the function returns a list of 2 elements, the first one containing the information for each acc measurement and the second containing al the acc samples corresponding to each measurement.

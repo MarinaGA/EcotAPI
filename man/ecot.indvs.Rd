@@ -4,7 +4,7 @@
 \alias{ecot.indvs}
 \title{Download devices information}
 \usage{
-ecot.indvs(token, ndevicelimit = 1000)
+ecot.indvs(user, psw, token, ndevicelimit = 1000)
 }
 \arguments{
 \item{token}{a character string giving your token for an open session. For obtaining it, see ecot.token.}
