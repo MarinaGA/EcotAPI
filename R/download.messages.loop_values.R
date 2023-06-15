@@ -2,10 +2,15 @@
 #'
 #' @description This function is only to avoid code repetition inside ecot.whole.download, ecot.update.download and ecot.whole.devices
 #'
-#' @param devices_toshow parameter already create inside the mabove mentioned fucntions
-#' @param indv_loop parameter already create inside the mabove mentioned fucntions
-#' @param error_count parameter already create inside the mabove mentioned fucntions
-#' @param Tres parameter already create inside the mabove mentioned fucntions
+#' @param devices_toshow parameter already created inside the above mentioned functions
+#' @param indv_loop parameter already created inside the above mentioned functions
+#' @param error_coun parameter already created inside the above mentioned functions
+#' @param Tres parameter already created inside the above mentioned functions
+#' @param down_f parameter already created inside the above mentioned functions
+#' @param token parameter already created inside the above mentioned functions
+#' @param type parameter already created inside the above mentioned functions
+#' @param maxrounds parameter already created inside the above mentioned functions
+#' @param show_count parameter already created inside the above mentioned functions
 #'
 #' @return updated values for indv_loop, error_count, and Tres  for each round of the loop of download.
 #' @export
@@ -49,7 +54,7 @@ tryCatch({
 
   } else {
 
-    warning("This device has not downloaded any data")}
+    message("This device has not downloaded any data")}
 
   indv_loop <- indv_loop+1
 
