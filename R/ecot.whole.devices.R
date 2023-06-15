@@ -19,11 +19,11 @@ ecot.whole.devices <-  function(user, psw, token, type = "GPS", devices, maxroun
     if(missing(token) & (missing(user) | missing(psw)))
       stop("You need to provide either a token or your user and psw.")
 
-    if(missing(devices))
-      stop("You need to provide a vector with devices id extracted from the API.")
-
     if(missing(token))
       token <- ecot.token(user,psw)
+
+    if(missing(devices))
+      stop("You need to provide a vector with the devices number showed on Ecotopia webpage or the UUID to be downloaded. Devices should have the 'Active' status.")
 
     Indv_id <- ecot.indvs(token)
     ## indvs suspended return the message 403 forbiden
@@ -39,6 +39,9 @@ ecot.whole.devices <-  function(user, psw, token, type = "GPS", devices, maxroun
 
     Indvs_act <- XX ## this df should contain only desired devices API ids
 
+    ## equivalences to cat
+    devices_toshow <- Indvs_act$mark
+
     Tres <- list()
 
     indv_loop <- 1
@@ -52,28 +55,22 @@ ecot.whole.devices <-  function(user, psw, token, type = "GPS", devices, maxroun
       if(error_count > nrow(Indvs_act)*2){ # the error that motivate the use of tryCatch normally appears once by each whole download.
         print(paste("The indv",indv_loop, "produced an error and it was not donwloaded"))
         indv_loop <- indv_loop + 1
+        error_count <- indv_loop ## return error_count to the corresponding value of the round
       }
 
-      tryCatch({
+      donw_f <- function() ecot.downloads(token = token, device_id = Indvs_act$id[indv_loop],
+                                          type = type, maxrounds = maxrounds, show_count = show_count)
 
-        error_count <- error_count + 1
+      download.messages.loop_values(devices_toshow,indv_loop,error_count,Tres)
 
-        cat("\nIndv",indv_loop,"-",type,"-",Indvs_act$mark[indv_loop],"\n\n") ## this shows the device that is being downloaded
-
-        Tloop <- ecot.downloads(token = token,device_id = Indvs_act$id[indv_loop], type = type, maxrounds = maxrounds, show_count = show_count)
-        tobind <- ecot.JSON_to_df(Tloop) ## this function is not inside the previous one because testing is easier this way
-
-        if(type != "Acc")
-          Tres[[indv_loop]] <- tobind else
-            Tres[[indv_loop]] <- list(sample_info = rbind(Tres$sample_info,tobind$sample_info),acc = c(Tres$acc,tobind$acc))
-
-        indv_loop <- indv_loop+1
-
-      },error=function(e) {message("The error '<simpleError: object of type 'externalptr' is not subsettable>', it is solved despite it appears sometimes");print(e)
-      },warning=function(w) {message('A Warning Occurred');print(w)
-      })
-    }
+    } ## end while
 
     return(Tres)
 
   }
+
+
+
+
+
+

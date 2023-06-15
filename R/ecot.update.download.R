@@ -6,7 +6,7 @@
 #' @param type a character string indicating the kind of data to download. It can be "GPS", "Env", "ODBA" or "Acc"
 #' @param maxrounds the maximun number of requests to the API. It means that the maximun number of data donwloaded by individual would be this value multiplied by 1000 (maximun available to be downloaded on one request).
 #' @param devID a character vector giving the device id to update. Only those active will be updated. The identifier to use could be uuid, device number according to Ecotopia webpage or the one from the table of devices information obtained with a call to the API. For obtaining the last one, see ecot.indvs.
-#' @param max_dates a character vector giving the date of the last data alrady download of each device on the format "Y%-%m-%d %H:%M:$S". If this is not provided the downloads will start at first date according to "Deployment date" on Ecotopia webpage. This argument admits tenths of a second which is normally the case for acc data.
+#' @param max_dates a character vector giving the date of the last data already download of each device on the format "Y%-%m-%d %H:%M:$S". If this is not provided the downloads will start at first date according to "Deployment date" on Ecotopia webpage. This argument admits tenths of a second which is normally the case for acc data.
 #' @param show_count a logical (TRUE or FALSE) indicating if an indicator of the current data that it is downloading should appears. The indicator is just a string with the last date of each 1e3 rows.
 #'
 #' @return a data frame containing all the available information that the Ecotopia API provide for each type of data. Only information from active devices can be downloaded. In the case of accelerometer data, the function returns a list of 2 elements, the first one containing the information for each acc measurement and the second containing al the acc samples corresponding to each measurement.
@@ -28,8 +28,6 @@ ecot.update.download <-   function(user, psw, token, type = "GPS", devID, max_da
     if(!missing(devID) & !missing(max_dates))
       if(length(devID)!=length(max_dates))
         stop("You need to provide a vector with device id for each individual (devID) and a vector of the SAME length with the last date downloaded for each one (max_dates).")
-
-
 
     Indv_id <- ecot.indvs(token)
     ## indvs suspended return the message 403 forbiden
@@ -61,30 +59,23 @@ ecot.update.download <-   function(user, psw, token, type = "GPS", devID, max_da
     while(indv_loop <= length(devID_act)){
 
       if(error_count > nrow(Indvs_act)*2) # the error that motivate the use of tryCatch normally appears once by each whole download.
-        stop()
+        stop() ## such error will appear normally once, if there is any other error that keeps appearing, this line will crack the download instead of create an infinite loop.
 
-      tryCatch({
+      donw_f <- function() ecot.downloads(token = token, device_id = devID_act[indv_loop],
+                                          type = type, maxrounds = maxrounds, show_count = show_count,
+                                          datestart_updates = max_dates[indv_loop])
 
-        error_count <- error_count + 1
+      download.messages.loop_values(devices_toshow,indv_loop,error_count,Tres)
 
-        cat("\nIndv",indv_loop,"-",type,"-",devices_toshow[indv_loop],"\n\n") ## this shows the device that is being downloaded
-
-      Tloop <- ecot.downloads(token = token, device_id = devID_act[indv_loop], type = type, maxrounds = maxrounds, datestart_updates = max_dates[indv_loop], show_count = show_count)
-
-      indv_loop <- indv_loop+1
-
-      },error=function(e) {message("The error '<simpleError: object of type 'externalptr' is not subsettable>', it is solved despite it appears sometimes");print(e)
-      },warning=function(w) {message('A Warning Occurred');print(w)
-      })
-
-      if(!is.null(Tloop)){
-        tobind <- ecot.JSON_to_df(Tloop) ## this function is not inside the previous one because testing is easier this way
-        if(type != "Acc")
-          Tres[[indv_loop]] <- tobind else
-            Tres <- list(sample_info = rbind(Tres$sample_info,tobind$sample_info),acc = c(Tres$acc,tobind$acc))
-      }
-    }
+    } ## end while
 
     return(Tres)
 
   }
+
+
+
+
+
+
+

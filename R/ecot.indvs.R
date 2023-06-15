@@ -8,26 +8,25 @@
 #'
 #' @examples devices_info <- ecot.indvs(ecot.token("abc","passw"))
 #'
-ecot.indvs <- function(token, ndevicelimit = 1e3){
+ecot.indvs <- function(user, psw, token, ndevicelimit = 1e3){
 
   list.of.packages <- c("httr", "jsonlite", "rjson") ## needed packages
   new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
   if (length(new.packages)) install.packages(new.packages)
   invisible(lapply(list.of.packages, library, character.only = TRUE))
 
+  if(missing(token) & (missing(user) | missing(psw)))
+    stop("You need to provide either a token or your user and psw.")
+
+  if(missing(token))
+    token <- ecot.token(user,psw)
+
   headers <-
     add_headers("x-druid-authentication" = token, "x-result-limit" = ndevicelimit)
   url <- "https://www.ecotopiago.com/api/v3/device/page/"
   input <- GET(url, config = headers)
-  input <- content(input, as = "parsed")
 
-  pull <- lapply(input, ecot.unlist.JSON.indvs)
-  allnms <- unique(unlist(lapply(pull, names)))
-  pull <- do.call(rbind,
-                  c(lapply(pull,
-                           function(x) data.frame(c(x, sapply(setdiff(allnms, names(x)),
-                                                              function(y) NA)))),
-                    make.row.names=FALSE))
+  pull <- rbindlist(lapply(lapply(content(input), unlist), as.list), fill = TRUE)
 
   pull$inventory_status[pull$inventory_status==10] <- "active"
   pull$inventory_status[pull$inventory_status==12] <- "suspended"
