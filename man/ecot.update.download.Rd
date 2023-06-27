@@ -2,7 +2,7 @@
 % Please edit documentation in R/ecot.update.download.R
 \name{ecot.update.download}
 \alias{ecot.update.download}
-\title{Download the whole data base}
+\title{Download specific devices from specific dates}
 \usage{
 ecot.update.download(
   user,
@@ -26,7 +26,7 @@ ecot.update.download(
 
 \item{devID}{a character vector giving the device id to update. Only those active will be updated. The identifier to use could be uuid, device number according to Ecotopia webpage or the one from the table of devices information obtained with a call to the API. For obtaining the last one, see ecot.indvs.}
 
-\item{max_dates}{a character vector giving the date of the last data already download of each device on the format "Y\%-\%m-\%d \%H:\%M:$S". If this is not provided the downloads will start at first date according to "Deployment date" on Ecotopia webpage. This argument admits tenths of a second which is normally the case for acc data.}
+\item{max_dates}{a character vector giving the date of the last data already download of each device on the format "\%Y-\%m-\%d \%H:\%M:\%S". If this is not provided the downloads will start at first date according to "Deployment date" on Ecotopia webpage. This argument admits tenths of a second which is normally the case for acc data.}
 
 \item{maxrounds}{the maximun number of requests to the API. It means that the maximun number of data donwloaded by individual would be this value multiplied by 1000 (maximun available to be downloaded on one request).}
 
@@ -36,7 +36,7 @@ ecot.update.download(
 a data frame containing all the available information that the Ecotopia API provide for each type of data. Only information from active devices can be downloaded. In the case of accelerometer data, the function returns a list of 2 elements, the first one containing the information for each acc measurement and the second containing al the acc samples corresponding to each measurement.
 }
 \description{
-Download the whole data base
+Download specific devices from specific dates
 }
 \examples{
 T_Env <- ecot.whole.download("abc","passw", type = "Env")
