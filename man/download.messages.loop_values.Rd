@@ -21,6 +21,8 @@ download.messages.loop_values(
 
 \item{indv_loop}{parameter already created inside the above mentioned functions}
 
+\item{error_count}{parameter already created inside the above mentioned functions}
+
 \item{Tres}{parameter already created inside the above mentioned functions}
 
 \item{down_f}{parameter already created inside the above mentioned functions}
@@ -32,8 +34,6 @@ download.messages.loop_values(
 \item{maxrounds}{parameter already created inside the above mentioned functions}
 
 \item{show_count}{parameter already created inside the above mentioned functions}
-
-\item{error_coun}{parameter already created inside the above mentioned functions}
 }
 \value{
 updated values for indv_loop, error_count, and Tres  for each round of the loop of download.
@@ -42,6 +42,8 @@ updated values for indv_loop, error_count, and Tres  for each round of the loop 
 This function is only to avoid code repetition inside ecot.whole.download, ecot.update.download and ecot.whole.devices
 }
 \examples{
+\dontrun{
 download.messages.loop_values(devices_toshow,indv_loop,error_count,Tres)
-
 }
+}
+\keyword{internal}

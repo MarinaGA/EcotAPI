@@ -18,5 +18,7 @@ a character string indicating your token for a limited session of API communicat
 ecot.token returns an open session token codifiying the your password and making a "post" call to the API. The token has an expiration date but a new one can be requested as many times as needed.
 }
 \examples{
+\dontrun{
 ecot.token("abc","passwd") # where your user names is "abc" and your password is "passwd"
+}
 }

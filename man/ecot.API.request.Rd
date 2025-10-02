@@ -17,7 +17,7 @@ ecot.API.request(
 
 \item{device_id}{a character string of the device id from the table of devices information obtained with a call to the API. For obtaining it, see ecot.indvs. The 3 different identifiers (uuid, device number, and device id) that appears on the Ecotopia webpage are not useful for this.}
 
-\item{ndevicelimit}{the maximun number of data to download on each request to the API. The maximun available is 1000, which is the default value.}
+\item{ndevicelimit}{the maximum number of data to download on each request to the API. The maximum available is 1000, which is the default value.}
 
 \item{datestart_updates}{a character string giving a date on the format "Y\%-\%m-\%d \%H:\%M:$S" indicating date from which start the downloading. If this is not provided the downloads will start at first date according to "Deployment date" on Ecotopia webpage.}
 
@@ -27,9 +27,11 @@ ecot.API.request(
 a list of data frame. Each element of the list is the downloadED information for each individual.
 }
 \description{
-ecot.API.request makes an unique request to Ecotopia API based on the choosen type of data, device id and date (optional) for a defined number (optional but always <= 1000) of resulting data.
+ecot.API.request makes an unique request to Ecotopia API based on the chosen type of data, device id and date (optional) for a defined number (optional but always <= 1000) of resulting data.
 }
 \examples{
+\dontrun{
 ecot.downloads(ecot.token("abc","passw"), "6267d0fae75c8ef26173d757", type = "Env")
+}
 
 }

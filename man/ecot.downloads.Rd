@@ -36,6 +36,8 @@ a list of data frame. Each element of the list is the downloadED information for
 ecot.downloads makes a serie of request to Ecotopia API based on the choosen type of data, device id and date (optional) for a defined number (optional) of resulting data.
 }
 \examples{
+\dontrun{
 ecot.downloads(ecot.token("abc","passw"), "6267d0fae75c8ef26173d757", type = "Env")
+}
 
 }

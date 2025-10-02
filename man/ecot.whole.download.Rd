@@ -27,15 +27,17 @@ ecot.whole.download(
 
 \item{show_count}{a logical (TRUE or FALSE) indicating if an indicator of the current data that it is downloading should appears. The indicator is just a string with the last date of each 1e3 rows.}
 
-\item{max_devs}{the maximun number of active devices to download. Optional.}
+\item{max_devs}{the maximun number of devices to download. Optional.}
 }
 \value{
-a data frame containing all the available information that the Ecotopia API provide for each type of data. Only information from active devices can be downloaded. In the case of accelerometer data, the function returns a list of 2 elements, the first one containing the information for each acc measurement and the second containing al the acc samples corresponding to each measurement.
+a data frame containing all the available information that the Ecotopia API provide for each type of data. In the case of accelerometer data, the function returns a list of 2 elements, the first one containing the information for each acc measurement and the second containing al the acc samples corresponding to each measurement.
 }
 \description{
 Download the whole data base
 }
 \examples{
+\dontrun{
 T_Env <- ecot.whole.download("abc","passw", type = "Env")
+}
 
 }

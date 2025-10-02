@@ -7,6 +7,10 @@
 ecot.indvs(user, psw, token, ndevicelimit = 1000)
 }
 \arguments{
+\item{user}{a character string giving to your user name account in Ecotopia.}
+
+\item{psw}{a character string giving the password of your account in Ecotopia.}
+
 \item{token}{a character string giving your token for an open session. For obtaining it, see ecot.token.}
 
 \item{ndevicelimit}{the maximun number of data to download on each request to the API. The maximun available is 1000, which is the default value.}
@@ -18,6 +22,8 @@ a data.frame with devices information available. The column "id" contains the us
 Download devices information
 }
 \examples{
+\dontrun{
 devices_info <- ecot.indvs(ecot.token("abc","passw"))
+}
 
 }
