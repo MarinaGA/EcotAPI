@@ -13,7 +13,10 @@
 #' @return a list of data frame. Each element of the list is the downloadED information for each individual.
 #' @export
 #'
-#' @examples ecot.downloads(ecot.token("abc","passw"), "6267d0fae75c8ef26173d757", type = "Env")
+#' @examples
+#' \dontrun{
+#' ecot.downloads(ecot.token("abc","passw"), "6267d0fae75c8ef26173d757", type = "Env")
+#' }
 #'
 ecot.downloads <- function(token, device_id, ndevicelimit = 1e3, type = "GPS", maxrounds = NA, datestart_updates = NA, show_count = F){
 

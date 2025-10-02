@@ -4,7 +4,7 @@
 #'
 #' @param devices_toshow parameter already created inside the above mentioned functions
 #' @param indv_loop parameter already created inside the above mentioned functions
-#' @param error_coun parameter already created inside the above mentioned functions
+#' @param error_count parameter already created inside the above mentioned functions
 #' @param Tres parameter already created inside the above mentioned functions
 #' @param down_f parameter already created inside the above mentioned functions
 #' @param token parameter already created inside the above mentioned functions
@@ -13,9 +13,16 @@
 #' @param show_count parameter already created inside the above mentioned functions
 #'
 #' @return updated values for indv_loop, error_count, and Tres  for each round of the loop of download.
+#'
 #' @export
 #'
-#' @examples download.messages.loop_values(devices_toshow,indv_loop,error_count,Tres)
+#' @importFrom data.table rbindlist
+#'
+#' @examples
+#' \dontrun{
+#' download.messages.loop_values(devices_toshow,indv_loop,error_count,Tres)
+#' }
+#' @keywords internal
 #'
 download.messages.loop_values <- function(devices_toshow,indv_loop,error_count,Tres, down_f, token, type, maxrounds, show_count){
 tryCatch({
