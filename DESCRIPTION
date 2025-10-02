@@ -16,3 +16,5 @@ Imports:
     httr,
     jsonlite,
     rjson
+URL: https://github.com/MarinaGA/EcotAPI
+BugReports: https://github.com/MarinaGA/EcotAPI/issues
