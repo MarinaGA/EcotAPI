@@ -46,7 +46,10 @@ ecot.update.download <-   function(user, psw, token, type = "GPS", devID, max_da
     devID_act <- devID_s[devID_s %in% Indv_id$id]
 
     ## equivalences to cat
-    devices_toshow <- merge(data.frame(id=devID_act),Indv_id)$mark
+    devices_toshow <- merge(Indv_id,data.frame(id = devID_act))[,c("id","mark")]
+    devices_toshow <- devices_toshow[match(devID_act, devices_toshow$id), ] # si no ordeno no muestra el ID correcto en cada descarga
+    devices_toshow <- devices_toshow$mark
+
 
     Tres <- list()
 
