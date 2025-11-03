@@ -53,20 +53,20 @@ ecot.update.download <-   function(user, psw, token, type = "GPS", devID, max_da
 
     Tres <- list()
 
-    indv_loop <- 1
+    device_loop <- 1
     error_count <- 1
 
 
-    while(indv_loop <= length(devID_act)){
+    while(device_loop <= length(devID_act)){
 
       if(error_count > nrow(Indv_id)*2) # the error that motivate the use of tryCatch normally appears once by each whole download.
         stop() ## such error will appear normally once, if there is any other error that keeps appearing, this line will crack the download instead of create an infinite loop.
 
-      down_f <- function() ecot.downloads(token = token, device_id = devID_act[indv_loop],
+      down_f <- function() ecot.downloads(token = token, device_id = devID_act[device_loop],
                                           type = type, maxrounds = maxrounds, show_count = show_count,
-                                          datestart_updates = max_dates[indv_loop])
+                                          datestart_updates = max_dates[device_loop])
 
-      download.messages.loop_values(devices_toshow,indv_loop,error_count,Tres,down_f, token, type, maxrounds, show_count)
+      download.messages.loop_values(devices_toshow,device_loop,error_count,Tres,down_f, token, type, maxrounds, show_count)
 
     } ## end while
 
