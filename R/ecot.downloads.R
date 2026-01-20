@@ -46,7 +46,8 @@ ecot.downloads <- function(token, device_id, ndevicelimit = 1e3, type = "GPS", m
   }
 
   if(length(Tloop)>0){ ## last downloaded date is always shown, not matter the value of showcount
-    if(names(Tloop)[2]=="msg"){
+    if(!is.null(names(Tloop))){
+    if(names(Tloop)[2]=="msg")
     cat("\n",Tloop[[2]],"\n")
     } else {
       
@@ -60,3 +61,4 @@ ecot.downloads <- function(token, device_id, ndevicelimit = 1e3, type = "GPS", m
 
 
 }
+
