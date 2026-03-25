@@ -18,7 +18,8 @@ devtools::install_github("MarinaGA/EcotAPI")
 
 - All functions are documented in the `man/` folder.  
 - You can also see examples in the help pages with `?function_name`.
-
+- There is an IA indexation to solve doubts on https://deepwiki.com/MarinaGA/EcotAPI
+   
 ## Contributing
 
 Issues and pull requests are welcome at:  
